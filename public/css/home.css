@@ -1,0 +1,50 @@
+/* Container styling for homepage */
+.home-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Heading styling */
+.home-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Paragraph styling */
+.home-container p {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 18px;
+}
+
+/* Button styling */
+.home-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Link styling */
+.home-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.home-container a:hover {
+    text-decoration: underline;
+}

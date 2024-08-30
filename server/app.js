@@ -24,12 +24,6 @@ app.use(expressSession({
 
 const router = express.Router();
 
-////홈 페이지
-router.route("/home").get((req,res) => {
-    res.render("home/Home", {}, (err,html)=>{
-        res.end(html);
-    });
-});
 ////로그인 페이지
 router.route("/login").get((req,res) => {
     res.render("member/LogIn", {}, (err,html)=>{
