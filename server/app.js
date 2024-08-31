@@ -40,7 +40,7 @@ router.route("/joinus").get((req,res) => {
 });
 //// 메인 페이지 (index.html)
 router.route('/main').get((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/index.html'));
+    res.sendFile(path.join(__dirname, '../client/main.html'));
 });
 
 //// 팀 페이지 (team.html)
