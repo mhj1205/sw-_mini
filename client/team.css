@@ -1,0 +1,102 @@
+/* 기존 CSS에 추가 또는 수정 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.team-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.team-member {
+  margin-bottom: 30px;
+}
+
+.member-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.member-info.left {
+  flex-direction: row;
+}
+
+.member-info.right {
+  flex-direction: row-reverse;
+}
+
+.member-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #333;
+  margin-right: 20px;
+}
+
+.member-info.right .member-photo {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.text-info {
+  max-width: 600px;
+}
+
+.text-info h2 {
+  margin: 10px 0;
+  color: #333;
+}
+
+.text-info p {
+  color: #666;
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .member-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .member-photo {
+    margin: 0 auto 10px;
+  }
+}

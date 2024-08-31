@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const expressSession = require("express-session");
 const mongoose = require('../db');
 const User = require('../models/User');
+const path = require('path');
 
 app.set('port', 3000);
 app.set("views", "views");
@@ -13,6 +14,7 @@ app.set("view engine", "ejs");
 
 //// 미들웨어
 app.use(express.static("public"));
+app.use(express.static("client"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -27,21 +29,30 @@ const router = express.Router();
 ////로그인 페이지
 router.route("/login").get((req,res) => {
     res.render("member/LogIn", {}, (err,html)=>{
-        res.end(html)
+        res.end(html);
     });
 });
 ////회원가입 페이지
 router.route("/joinus").get((req,res) => {
     res.render("member/JoinUs", {}, (err,html)=>{
-        res.end(html)
+        res.end(html);
     });
 });
-////테스트 페이지
-router.route("/test").get((req,res) => {
-    res.render("test/Test", {}, (err,html)=>{
-        res.end(html)
-    });
+//// 메인 페이지 (index.html)
+router.route('/main').get((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+//// 팀 페이지 (team.html)
+router.route('/team').get((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/team.html'));
+});
+
+//// MBTI 페이지 (mbti.html)
+router.route('/mbti').get((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/mbti.html'));
+});
+
 
 ////로그인 처리
 router.route('/login').post(async (req, res) => {
@@ -66,7 +77,7 @@ router.route('/login').post(async (req, res) => {
             name: user.name,
             no: user._id
         };
-        res.redirect('/test');
+        res.redirect('/main');
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
