@@ -6,17 +6,19 @@ const cookieParser = require('cookie-parser');
 const expressSession = require("express-session");
 const mongoose = require('../db');
 const User = require('../models/User');
+const cors = require('cors');
 const path = require('path');
 
 app.set('port', 3000);
-app.set("views", "views");
+app.set('views', path.join(__dirname, '../views'));
 app.set("view engine", "ejs");
+
 
 //// 미들웨어
 app.use(express.static("public"));
-app.use(express.static("client"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(cookieParser());
 app.use(expressSession({
     secret: 'my key',
@@ -38,22 +40,6 @@ router.route("/joinus").get((req,res) => {
         res.end(html);
     });
 });
-//// 메인 페이지 (index.html)
-router.route('/main').get((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/main.html'));
-});
-
-//// 팀 페이지 (team.html)
-router.route('/team').get((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/team.html'));
-});
-
-//// MBTI 페이지 (mbti.html)
-router.route('/mbti').get((req, res) => {
-    res.sendFile(path.join(__dirname, '../client/mbti.html'));
-});
-
-
 ////로그인 처리
 router.route('/login').post(async (req, res) => {
     const { id, password } = req.body;
@@ -98,8 +84,14 @@ router.route("/joinus").post(async (req,res) => {
     }
 });
 
-
 app.use('/', router);
+
+app.use(express.static(path.join(__dirname, '../client/build')));
+// React 애플리케이션 제공
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+  });
+
 //서버 생성 및 실행
 const server = http.createServer(app);
 server.listen(app.get('port'), () => {
